@@ -1,0 +1,25 @@
+1. #build docker image using mvn command we have another way also --> docker build -t .
+ D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api> mvn spring-boot:build-image "-Dspring-boot.build-image.imageName=dvdr/bookmarker-api"
+ D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api> mvn spring-boot:build-image "-Dspring-boot.build-image.imageName=dvdr/bookmarker-api" -DskipTests
+
+=>jshell is IMP
+
+2. after putting the image name in pom.xml
+   D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api> mvn spring-boot:build-image -DskipTests
+
+3. Running docker image
+    .Without Database
+    D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api> docker run -p 8080:8080 dvdr/bookmarker-api
+
+    .With Database
+    D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api> docker run --rm -p 8080:8080`
+      -e DB_URL="jdbc:postgresql://host.docker.internal:5432/shivalabsbookmark"`
+      -e DB_USERNAME=postgres`
+      -e DB_PASSWORD=root`
+      dvdr/bookmarker-api
+
+4. Using Jib we can create the Docker image also .
+   D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api>mvn jib:build
+   D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api>mvn jib:dockerBuild
+   D:\IntelliJ-wrkpsc\shivalabs\bookmarker-api>mvn jib:build -Dimage=dvdr/bkmark-jib-customname
+
