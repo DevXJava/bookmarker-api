@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface BookmarkRepository extends JpaRepository<Bookmark,Long> {
 
@@ -14,7 +15,7 @@ public interface BookmarkRepository extends JpaRepository<Bookmark,Long> {
     Page<BookmarkDTO> searchBookmarks(String query,Pageable pageable);
 
     Page<BookmarkDTO> findByTitleContainsIgnoreCase(String title,Pageable pageable);
-
+    
     //Page<BookmarkVM> findByTitleContainsIgnoreCase(String title,Pageable pageable);
 
 }
