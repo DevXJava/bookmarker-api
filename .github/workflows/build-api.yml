@@ -1,14 +1,15 @@
 name: Build
+
 on:
   push:
-    paths:
-      - "bookmarker-api/**"
     branches: ["main"]
+    paths:
+      - "**"
 
   pull_request:
-    paths:
-      - "bookmarker-api/**"
     branches: ["main"]
+    paths:
+      - "**"
     types: [opened, synchronize, reopened]
 
 permissions:
@@ -21,7 +22,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: ./bookmarker-api
+        working-directory: .
 
     steps:
       - name: Checkout source code
@@ -33,7 +34,7 @@ jobs:
           java-version: "21"
           distribution: temurin
           cache: maven
-          cache-dependency-path: bookmarker-api/pom.xml
+          cache-dependency-path: pom.xml
 
       - name: Make Maven wrapper executable
         run: chmod +x ./mvnw
